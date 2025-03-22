@@ -17,3 +17,6 @@
 .transform-style-preserve-3d {
   transform-style: preserve-3d;
 }
+body {
+  overflow-x: hidden;
+}

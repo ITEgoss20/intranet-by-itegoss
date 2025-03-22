@@ -18,7 +18,7 @@ const FlipCardSection = () => {
   ];
 
   return (
-    <div className="flex items-center justify-center p-4">
+    <div className="flex items-center justify-center p-4 mt-8">
       <div className="flex flex-wrap gap-6 max-w-6xl justify-center">
         {cards.map((card, index) => (
           <div
