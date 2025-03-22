@@ -21,7 +21,7 @@ const FlipCardSection = () => {
     <div className="flex items-center justify-center p-4">
       <div className="flex flex-wrap gap-6 max-w-6xl justify-center">
         {cards.map((card, index) => (
-          <div key={index} className="w-72 h-96 perspective group">
+          <div key={index} className="w-72 h-96 perspective group hover:cursor-pointer">
             <div className="relative w-full h-full transition-transform duration-700 ease-in-out transform-style-preserve-3d group-hover:rotate-y-180">
               {/* Front Side */}
               <div className="absolute w-full h-full bg-white rounded-2xl shadow-2xl flex items-center justify-center text-2xl font-bold text-gray-800 backface-hidden">
