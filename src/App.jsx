@@ -18,16 +18,14 @@ function App() {
             isSidebarOpen ? "w-[25%]" : "w-0 -ml-[300px]"
           }`}
         >
-          <Link to={"/home"}>
-            <div
-              className={`leading-3 cursor-pointer p-4 ${
-                !isSidebarOpen && "hidden"
-              }`}
-            >
-              {/* <p className="text-green-600">Web App</p> */}
-              <img src={Logo} alt="" className="w-28" />
-            </div>
-          </Link>
+          <div
+            className={`leading-3 cursor-pointer p-4 ${
+              !isSidebarOpen && "hidden"
+            }`}
+          >
+            {/* <p className="text-green-600">Web App</p> */}
+            <img src={Logo} alt="" className="w-28" />
+          </div>
           <div className={`mt-2 ${!isSidebarOpen && "hidden"}`}>
             <div className="flex items-center space-x-3 px-4">
               <button onClick={closeSidebar}>
@@ -113,9 +111,7 @@ function App() {
                   <i className="fa fa-bars cursor-pointer"></i>
                 </button>
               )}
-              <Link to={"/home"}>
-                <img src={Logo} alt="" className="w-28" />
-              </Link>
+              <img src={Logo} alt="" className="w-28" />
               {/* <p className="-mt-1">Jigish Sir</p> */}
             </div>
             <div className="w-12 h-12 bg-blue-400 flex items-center justify-center rounded-full">

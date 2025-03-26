@@ -29,10 +29,6 @@ const ProtectRoute = ({ element }) => {
 
 const appRouter = createBrowserRouter([
   {
-    path: "/home",
-    element: <HomePage />,
-  },
-  {
     path: "/login",
     element: <LoginPage />,
   },

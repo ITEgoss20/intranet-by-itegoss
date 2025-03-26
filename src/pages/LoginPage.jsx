@@ -52,46 +52,46 @@
 
 import React from "react";
 import { Mail, Lock } from "lucide-react";
-import authBg from "../assets/authBg.jpg";
+import authBg from "../assets/authBg.webp";
 import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   return (
     <div
-      className="h-screen w-screen bg-cover bg-bottom flex items-center justify-center"
+      className="h-screen w-screen bg-cover bg-bottom flex items-center justify-center border"
       style={{ backgroundImage: `url(${authBg})` }}
     >
-      <div className="bg-white bg-opacity-90 backdrop-blur-lg p-8 rounded-md shadow-2xl w-full max-w-md">
-        <h2 className="text-3xl font-semibold text-center mb-8 text-gray-800">
+      <div className="bg-opacity-20 backdrop-blur-lg p-8 rounded-md shadow-2xl w-full max-w-md">
+        <h2 className="text-3xl font-semibold text-center mb-8 text-white">
           Login
         </h2>
 
         {/* Email Input */}
         <div className="relative mb-2">
           <Mail
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white"
             size={20}
           />
           <input
             type="email"
-            placeholder="Email"
-            className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            placeholder="Login"
+            className="w-full pl-12 pr-4 py-3 rounded-xl border text-white placeholder:text-white border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
           />
         </div>
 
         {/* Password Input */}
         <div className="relative mb-6">
           <Lock
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white"
             size={20}
           />
           <input
             type="password"
             placeholder="Password"
-            className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            className="w-full pl-12 pr-4 py-3 rounded-xl border text-white placeholder:text-white border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
           />
         </div>
-        <Link to={"/home"}>
+        <Link to={"/dashboard"}>
           <button className="w-full cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl shadow-md transition">
             Login
           </button>

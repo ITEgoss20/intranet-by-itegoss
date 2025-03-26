@@ -1,7 +1,12 @@
 import React from "react";
+import StackedBarChart from "../components/StackedBarChart";
 
 const MISDashboard = () => {
-  return <div>This is a MIS Dashboard</div>;
+  return (
+    <div>
+      <StackedBarChart />
+    </div>
+  );
 };
 
 export default MISDashboard;
