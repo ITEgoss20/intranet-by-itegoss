@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+body {
+  overflow-x: hidden;
+}
+
+/* Custom Utilities for Flip Effect */
+.perspective {
+  perspective: 1500px;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.active{
+  text-decoration: underline;
+}
