@@ -38,7 +38,7 @@ const RolePermissionsTable = ({
 }) => {
   return (
     <div className="overflow-auto max-h-[300px] border border-gray-200 rounded-xl mt-4">
-      <table className="min-w-[1160.5px] text-sm">
+      <table className="min-w-[1198px] text-sm">
         <thead className="border-b border-gray-200">
           <tr className="bg-gray-50 text-gray-500">
             <th className="text-left uppercase px-4 py-3 w-1/4 font-medium text-[13px]">

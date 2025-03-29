@@ -22,6 +22,16 @@ body {
   transform-style: preserve-3d;
 }
 
-.active{
+.active {
   text-decoration: underline;
+}
+
+.scrollbar-hide {
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }

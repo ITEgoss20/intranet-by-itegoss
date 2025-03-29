@@ -21,6 +21,8 @@ import TaskAllocationPage from "./pages/TaskAllocationPage.jsx";
 import MISDashboard from "./pages/MISDashboard.jsx";
 import AssetManagementPage from "./pages/AssetManagementPage.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
+import { Provider } from "react-redux";
+import { store } from "./redux/store.js";
 
 const ProtectRoute = ({ element }) => {
   const [isLogin, setIslogin] = useState(false);
@@ -94,6 +96,8 @@ const appRouter = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={appRouter} />
+    <Provider store={store}>
+      <RouterProvider router={appRouter} />
+    </Provider>
   </StrictMode>
 );

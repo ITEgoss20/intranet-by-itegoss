@@ -1,31 +1,57 @@
 import React from "react";
+import { useSelector } from "react-redux";
 // import './index.css'; // Import your CSS for custom classes
 
 const FlipCardContainer = () => {
   const cards = [
     {
       title: "Card One",
-      content: "This is the back side of Card One. Cool right?",
+      content: "User Role Module",
     },
     {
       title: "Card Two",
-      content: "Here’s the back of Card Two. Smooth and clean!",
+      content: "People",
     },
     {
       title: "Card Three",
-      content: "Back side of Card Three. Designed by your bro!",
+      content: "Onboarding/Offboarding",
+    },
+    {
+      title: "Card Three",
+      content: "Leave management",
+    },
+    {
+      title: "Card Three",
+      content: "Reaquest Management",
+    },
+    {
+      title: "Card Three",
+      content: "Inventory Management",
+    },
+    {
+      title: "Card Three",
+      content: "Asset Management",
+    },
+    {
+      title: "Card Three",
+      content: "Visitor/Vendor/Customer",
+    },
+    {
+      title: "Card Three",
+      content: "Task Allocation",
+    },
+    {
+      title: "Card Three",
+      content: "MIS Dashboard",
     },
   ];
-
-  
-
   return (
-    <div className="flex items-center justify-center p-4 mt-8">
-      <div className="flex flex-wrap gap-6 max-w-6xl justify-center">
+    <div className="flex items-center mt-8">
+      <div className="flex flex-wrap gap-6 justify-center mx-auto">
         {cards.map((card, index) => (
           <div
             key={index}
-            className="w-72 h-96 perspective group hover:cursor-pointer"
+            className="w-64 h-40 perspective group hover:cursor-pointer"
           >
             <div className="relative w-full h-full transition-transform duration-700 ease-in-out transform-style-preserve-3d group-hover:rotate-y-180">
               {/* Front Side */}
