@@ -48,12 +48,6 @@ const PeopleManagmentPage = () => {
             </button>
           </div>
         </div>
-        {/* <RolePermissionsTable
-          isOpen={isOpen}
-          closeModal={closeModal}
-          roleName={roleName}
-          setRoleName={setRoleName}
-        /> */}
         <PeopleManagementTable />
         <div className="border border-gray-200 p-4 mt-4 rounded-xl flex items-center justify-between">
           <p className="text-sm text-gray-700">Showing 1 - 4 of 4</p>
