@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const sidebarSlice = createSlice({
   name: "sidebar",
-  initialState: { isOpen: true },
+  initialState: { isOpen: window.innerWidth >= 768 },
   reducers: {
     openSidebar: (state) => {
       state.isOpen = true;
