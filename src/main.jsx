@@ -23,11 +23,8 @@ import AssetManagementPage from "./pages/AssetManagementPage.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import { Provider } from "react-redux";
 import { store } from "./redux/store.js";
-
-const ProtectRoute = ({ element }) => {
-  const [isLogin, setIslogin] = useState(false);
-  return isLogin ? element : <LoginPage />;
-};
+import { ToastContainer } from "react-toastify";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 const appRouter = createBrowserRouter([
   {
@@ -44,51 +41,51 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: <ProtectedRoute element={<Dashboard />} />,
       },
       {
         path: "/admin-dashboard",
-        element: <ProtectRoute element={<AdminDashboard />} />,
+        element: <ProtectedRoute element={<AdminDashboard />} />,
       },
       {
         path: "/user-role-module",
-        element: <UserManagementPage />,
+        element: <ProtectedRoute element={<UserManagementPage />} />,
       },
       {
         path: "/people",
-        element: <PeopleManagmentPage />,
+        element: <ProtectedRoute element={<PeopleManagmentPage />} />,
       },
       {
         path: "/boadring-management",
-        element: <BoardingManagementPage />,
+        element: <ProtectedRoute element={<BoardingManagementPage />} />,
       },
       {
         path: "/leave-management",
-        element: <LeaveManagementPage />,
+        element: <ProtectedRoute element={<LeaveManagementPage />} />,
       },
       {
         path: "/request-management",
-        element: <RequestManagementPage />,
+        element: <ProtectedRoute element={<RequestManagementPage />} />,
       },
       {
         path: "/inventory-management",
-        element: <InventoryManagementPage />,
+        element: <ProtectedRoute element={<InventoryManagementPage />} />,
       },
       {
         path: "/asset-management",
-        element: <AssetManagementPage />,
+        element: <ProtectedRoute element={<AssetManagementPage />} />,
       },
       {
         path: "/vvc-management",
-        element: <VVCManagementPage />,
+        element: <ProtectedRoute element={<VVCManagementPage />} />,
       },
       {
         path: "/task-allocation",
-        element: <TaskAllocationPage />,
+        element: <ProtectedRoute element={<TaskAllocationPage />} />,
       },
       {
         path: "/mis-dashboard",
-        element: <MISDashboard />,
+        element: <ProtectedRoute element={<MISDashboard />} />,
       },
     ],
   },
@@ -97,6 +94,7 @@ const appRouter = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
+      <ToastContainer position="top-right" autoClose={3000} />
       <RouterProvider router={appRouter} />
     </Provider>
   </StrictMode>

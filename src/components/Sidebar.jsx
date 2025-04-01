@@ -69,7 +69,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeSidebar, openSidebar } from "../redux/sidebarSlice";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import Logo from "../assets/logo.png";
 import { menuItems } from "../services/helper.js";
@@ -78,6 +78,7 @@ const Sidebar = () => {
   const isSidebarOpen = useSelector((state) => state.isOpen);
   const dispatch = useDispatch();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const navigate = useNavigate();
 
   const location = useLocation(); // Get current route
 
@@ -112,6 +113,11 @@ const Sidebar = () => {
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, [isSidebarOpen, isMobile, dispatch]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user"); // Remove user data from localStorage
+    navigate("/login"); // Redirect to login page
+  };
 
   return (
     <>
@@ -156,24 +162,60 @@ const Sidebar = () => {
           <nav>
             <ul className="space-y-2">
               {menuItems.map((item, index) => (
-                <NavLink
-                  key={index}
-                  to={item.path}
-                  className={({ isActive }) =>
-                    `flex items-center p-3 rounded-lg transition-all duration-300 ${
-                      isActive ? "bg-gray-700" : "hover:bg-gray-800"
-                    }`
-                  }
-                >
-                  <item.icon className="w-6 h-6" />
-                  <span
-                    className={`ml-3 text-sm font-medium transition-all duration-300 ${
-                      !isSidebarOpen && !isMobile && "hidden"
-                    }`}
-                  >
-                    {item.name}
-                  </span>
-                </NavLink>
+                <li key={index}>
+                  {item.action ? (
+                    <button
+                      onClick={handleLogout}
+                      className="flex cursor-pointer items-center w-full p-3 rounded-lg transition-all duration-300 hover:bg-gray-800 text-left"
+                    >
+                      <item.icon className="w-6 h-6" />
+                      <span
+                        className={`ml-3 text-sm font-medium ${
+                          !isSidebarOpen && "hidden"
+                        }`}
+                      >
+                        {item.name}
+                      </span>
+                    </button>
+                  ) : (
+                    // Otherwise, render normal NavLink
+                    <NavLink
+                      to={item.path}
+                      className={({ isActive }) =>
+                        `flex items-center p-3 rounded-lg transition-all duration-300 ${
+                          isActive ? "bg-gray-700" : "hover:bg-gray-800"
+                        }`
+                      }
+                    >
+                      <item.icon className="w-6 h-6" />
+                      <span
+                        className={`ml-3 text-sm font-medium ${
+                          !isSidebarOpen && "hidden"
+                        }`}
+                      >
+                        {item.name}
+                      </span>
+                    </NavLink>
+                  )}
+                </li>
+                // <NavLink
+                //   key={index}
+                //   to={item.path}
+                //   className={({ isActive }) =>
+                //     `flex items-center p-3 rounded-lg transition-all duration-300 ${
+                //       isActive ? "bg-gray-700" : "hover:bg-gray-800"
+                //     }`
+                //   }
+                // >
+                //   <item.icon className="w-6 h-6" />
+                //   <span
+                //     className={`ml-3 text-sm font-medium transition-all duration-300 ${
+                //       !isSidebarOpen && !isMobile && "hidden"
+                //     }`}
+                //   >
+                //     {item.name}
+                //   </span>
+                // </NavLink>
               ))}
             </ul>
           </nav>

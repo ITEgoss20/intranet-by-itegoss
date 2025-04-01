@@ -23,7 +23,6 @@ const PeopleManagementForm = ({ closeForm }) => {
           <FloatingLabelInput label="Corporate User ID" required />
         </Section>
         <Section title="ID Information">
-          <FloatingLabelInput label="National ID Information" required />
           <FloatingLabelInput label="Aadhar Number" required />
           <FileInput label="Attachment" />
           <FloatingLabelInput label="Name as per National ID" required />

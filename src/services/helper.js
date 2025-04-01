@@ -33,5 +33,9 @@ export const menuItems = [
   { name: "Visitor / Vendor / Customer", icon: Users, path: "/vvc-management" },
   { name: "Task Allocation", icon: ClipboardList, path: "/task-allocation" },
   { name: "MIS Dashboard", icon: LayoutDashboard, path: "/mis-dashboard" },
-  { name: "Logout", icon: LogOut, path: "/login" },
+  {
+    name: "Logout",
+    icon: LogOut,
+    action: true,
+  },
 ];

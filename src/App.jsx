@@ -1,45 +1,6 @@
-// import { Outlet } from "react-router-dom";
-// import Logo from "./assets/logo.png";
-// import { User } from "lucide-react";
-// import { useSelector } from "react-redux";
-// import Sidebar from "./components/Sidebar";
-// import ScrollToTop from "./components/ScrollToTop";
-
-// function App() {
-//   const isSidebarOpen = useSelector((state) => state.isOpen);
-
-//   return (
-//     <div className="h-screen flex overflow-hidden">
-//       <Sidebar />
-//       <div
-//         id="main-content"
-//         className={`flex-1 transition-all duration-500 ease-in-out ${
-//           isSidebarOpen ? "ml-64" : "ml-16"
-//         } overflow-y-auto `}
-//       >
-//         <ScrollToTop />
-//         <div className="flex items-center justify-between h-16 sticky top-0 bg-gray-900 w-full px-4 z-40">
-//           <div className="text-white text-xl flex items-center space-x-6">
-//             {!isSidebarOpen && <img src={Logo} alt="Logo" className="w-28" />}
-//           </div>
-//           <div className="w-12 h-12 bg-blue-400 flex items-center justify-center rounded-full">
-//             <User className="w-8 h-8 text-white" />
-//           </div>
-//         </div>
-//         {/* Page Content */}
-//         <div className="py-4 px-6">
-//           <Outlet />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default App;
-
 import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { openSidebar, toggleSidebar } from "./redux/sidebarSlice";
+import { toggleSidebar } from "./redux/sidebarSlice";
 import { Menu, User } from "lucide-react";
 import Sidebar from "./components/Sidebar";
 import ScrollToTop from "./components/ScrollToTop";
@@ -48,6 +9,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const isSidebarOpen = useSelector((state) => state.isOpen);
+  const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
@@ -55,7 +17,6 @@ function App() {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -84,9 +45,11 @@ function App() {
             )}
             {!isSidebarOpen && <img src={Logo} alt="Logo" className="w-28" />}
           </div>
-          {/* User Icon */}
-          <div className="w-12 h-12 bg-blue-400 flex items-center justify-center rounded-full">
-            <User className="w-8 h-8 text-white" />
+          <div className="flex items-center gap-4">
+            {user && <p className="text-sm text-gray-200">{user.loginId}</p>}
+            <div className="w-12 h-12 cursor-pointer bg-blue-400  flex items-center justify-center rounded-full">
+              <User className="w-8 h-8 text-white" />
+            </div>
           </div>
         </div>
 
