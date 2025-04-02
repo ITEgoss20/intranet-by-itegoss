@@ -24,7 +24,7 @@ const LoginPage = () => {
     );
     dispatch(login({ loginId: data.loginId, token: dummyToken }));
     toast.success("Login successful!");
-    navigate("/dashboard");
+    navigate("/");
   };
 
   return (

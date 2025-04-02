@@ -1,78 +1,10 @@
-// import React from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { closeSidebar, openSidebar } from "../redux/sidebarSlice";
-// import { NavLink } from "react-router-dom";
-// import { ChevronLeft, Menu } from "lucide-react";
-// import Logo from "../assets/logo.png";
-// import { menuItems } from "../services/helper.js";
-
-// const Sidebar = () => {
-//   const isSidebarOpen = useSelector((state) => state.isOpen);
-//   const dispatch = useDispatch();
-
-//   return (
-//     <aside
-//       className={`fixed top-0 left-0 h-screen bg-gray-900 text-white shadow-lg transition-all duration-500 ease-in-out ${
-//         isSidebarOpen ? "w-64" : "w-16"
-//       } flex flex-col`}
-//     >
-//       {/* Sidebar Header (Fixed) */}
-//       <div className="px-2.5 py-3 flex items-center justify-between flex-shrink-0">
-//         {isSidebarOpen && <img src={Logo} alt="Logo" className="w-28" />}
-//         <button
-//           onClick={() =>
-//             dispatch(isSidebarOpen ? closeSidebar() : openSidebar())
-//           }
-//           className="text-white  focus:outline-none"
-//         >
-//           {isSidebarOpen ? (
-//             <ChevronLeft size={28} className="cursor-pointer -mt-3" />
-//           ) : (
-//             <Menu size={28} className="cursor-pointer" />
-//           )}
-//         </button>
-//       </div>
-
-//       {/* Scrollable Sidebar Navigation */}
-//       <div className="flex-1 overflow-y-auto scrollbar-hide mt-2">
-//         <nav>
-//           <ul className="space-y-2">
-//             {menuItems.map((item, index) => (
-//               <NavLink
-//                 key={index}
-//                 to={item.path}
-//                 className={({ isActive }) =>
-//                   `flex items-center p-3 rounded-lg transition-all duration-300 ${
-//                     isActive ? "bg-gray-700" : "hover:bg-gray-800"
-//                   }`
-//                 }
-//               >
-//                 <item.icon className="w-6 h-6" />
-//                 <span
-//                   className={`ml-3 text-sm font-medium transition-all duration-300 ${
-//                     !isSidebarOpen && "hidden"
-//                   }`}
-//                 >
-//                   {item.name}
-//                 </span>
-//               </NavLink>
-//             ))}
-//           </ul>
-//         </nav>
-//       </div>
-//     </aside>
-//   );
-// };
-
-// export default Sidebar;
-
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeSidebar, openSidebar } from "../redux/sidebarSlice";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import Logo from "../assets/logo.png";
-import { menuItems } from "../services/helper.js";
+import { menuItems } from "../utils/helper.js";
 
 const Sidebar = () => {
   const isSidebarOpen = useSelector((state) => state.isOpen);
@@ -115,13 +47,12 @@ const Sidebar = () => {
   }, [isSidebarOpen, isMobile, dispatch]);
 
   const handleLogout = () => {
-    localStorage.removeItem("user"); // Remove user data from localStorage
-    navigate("/login"); // Redirect to login page
+    localStorage.removeItem("user");
+    navigate("/login");
   };
 
   return (
     <>
-      {/* Mobile overlay when sidebar is open */}
       {isMobile && isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black opacity-50 z-40"

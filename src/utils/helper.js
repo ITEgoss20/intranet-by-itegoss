@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 export const menuItems = [
-  { name: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
+  { name: "Dashboard", icon: LayoutDashboard, path: "/" },
   { name: "User Role Module", icon: User, path: "/user-role-module" },
   { name: "People", icon: Users, path: "/people" },
   {
