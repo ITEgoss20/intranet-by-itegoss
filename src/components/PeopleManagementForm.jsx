@@ -1,623 +1,641 @@
 import React, { useState } from "react";
 import { peopleFormArray, peopleInitialStates } from "../utils/helper";
+import useFormValidation from "../customHooks/useFormValidation";
+import employeeSchema from "../validations/peopleManagmentSchema";
+
 const PeopleManagementForm = ({ closeForm }) => {
-  const { countries, genders, maritalStatus, titles, relations } =
-    peopleFormArray;
-  const [peopleFormData, setPeopleFormData] = useState(peopleInitialStates);
+  console.log(Object.keys(peopleInitialStates).length);
+  const {
+    countries,
+    genders,
+    maritalStatus,
+    titles,
+    relations,
+    currency,
+    employeeStatus,
+    bloodGroup,
+    frequencies,
+    paymentMethod,
+    employementType,
+  } = peopleFormArray;
+  // const [peopleFormData, setPeopleFormData] = useState(peopleInitialStates);
+  const { register, handleSubmit, errors } = useFormValidation(employeeSchema);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setPeopleFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  // console.log(Object.keys(peopleInitialStates).length);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(peopleFormData);
+  const handleForm = (data) => {
+    console.log(data);
   };
 
   return (
     <div className="py-4 sm:p-8 bg-white sm:rounded-2xl shadow-lg mt-4 overflow-auto max-h-[60vh]">
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6 relative">
+      <form
+        onSubmit={handleSubmit(handleForm)}
+        className="grid grid-cols-1 gap-6 relative"
+      >
         <Section title="Personal Information">
           <DropdownInput
             name={"title"}
             label="Title"
             options={titles}
-            onChange={handleInputChange}
-            value={peopleFormData.title}
+            register={register}
+            errors={errors}
             required
           />
           <FloatingLabelInput
             name={"personalInfoFirstName"}
             label="First Name"
-            onChange={handleInputChange}
-            value={peopleFormData.personalInfoFirstName}
+            register={register}
+            errors={errors}
             required
           />
           <FloatingLabelInput
             name={"personalInfoMiddleName"}
             label="Middle Name"
-            onChange={handleInputChange}
-            value={peopleFormData.personalInfoMiddleName}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
             name={"personalInfoLastName"}
             label="Last Name"
             required
-            onChange={handleInputChange}
-            value={peopleFormData.personalInfoLastName}
+            register={register}
+            errors={errors}
           />
           <DropdownInput
             name={"personalInfoGender"}
             label="Gender"
             options={genders}
-            onChange={handleInputChange}
-            value={peopleFormData.personalInfoGender}
+            register={register}
+            errors={errors}
             required
           />
           <DropdownInput
             label="Marital Status"
             name={"personalInfoMaritalStatus"}
             options={maritalStatus}
-            onChange={handleInputChange}
-            value={peopleFormData.personalInfoMaritalStatus}
+            register={register}
+            errors={errors}
             required
           />
           <FloatingLabelDateInput
             name={"personalInfoMaritalSince"}
             label="Marital Status Since"
-            onChange={handleInputChange}
-            value={peopleFormData.personalInfoMaritalSince}
+            register={register}
+            errors={errors}
           />
           <DropdownInput
             name={"employeeWorkCountry"}
             label="Employee Work Country"
             options={countries}
-            onChange={handleInputChange}
-            value={peopleFormData.employeeWorkCountry}
+            register={register}
+            errors={errors}
             required
           />
           <FloatingLabelInput
             name={"citizenship1"}
             label="Citizenship1"
-            onChange={handleInputChange}
-            value={peopleFormData.citizenship1}
+            register={register}
+            errors={errors}
             required
           />
           <FloatingLabelInput
             name={"citizenship2"}
             label="Citizenship2"
-            onChange={handleInputChange}
-            value={peopleFormData.citizenship2}
+            register={register}
+            errors={errors}
             required
           />
         </Section>
         <Section title="Biographical Information">
           <FloatingLabelDateInput
             name="dobBiographicalInfo"
-            onChange={handleInputChange}
+            register={register}
+            errors={errors}
             label="Date of Birth"
-            value={peopleFormData.dobBiographicalInfo}
             required
           />
           <DropdownInput
             label="Country of Birth"
             options={countries}
             name="countryOfBirthBiographicalInfo"
-            value={peopleFormData.countryOfBirthBiographicalInfo}
-            onChange={handleInputChange}
+            register={register}
+            errors={errors}
             required
           />
-          <FloatingLabelInput
-            onChange={handleInputChange}
+          <DropdownInput
             name="bloodGroup"
-            value={peopleFormData.bloodGroup}
+            register={register}
+            options={bloodGroup}
+            errors={errors}
             label="Blood Group"
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="corporateUserID"
+            register={register}
+            errors={errors}
             label="Corporate User ID"
-            value={peopleFormData.corporateUserID}
           />
           {/*"Auto generated."*/}
         </Section>
         <Section title="ID Information">
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="adharNumber"
             type={"number"}
             label="Aadhar Number"
-            value={peopleFormData.adharNumber}
+            register={register}
+            errors={errors}
             required
           />
           <FileInput
-            onChange={handleInputChange}
             name="attachment1IDInfo"
             label="Attachment"
-            value={peopleFormData.attachment1IDInfo}
+            register={register}
+            errors={errors}
             required
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="nameAsperNationalId"
             label="Name as per National ID"
-            value={peopleFormData.nameAsperNationalId}
+            register={register}
+            errors={errors}
             required
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="permanantAccountNumber"
             label="Permanent Account Number"
-            value={peopleFormData.permanantAccountNumber}
+            register={register}
+            errors={errors}
             required
           />
           <FileInput
-            onChange={handleInputChange}
             name="attachment2IDInfo"
             label="Attachment"
             accept="image/*"
-            value={peopleFormData.attachment2IDInfo}
+            register={register}
+            errors={errors}
             required
           />
         </Section>
         <Section title="Contact Information">
           <FileInput
-            onChange={handleInputChange}
             name="attachmentContact"
             label="Attachment"
-            value={peopleFormData.attachmentContact}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="bussinessEmail"
             label="Business Email"
-            value={peopleFormData.bussinessEmail}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="bussinessMobile"
             label="Business Mobile"
-            value={peopleFormData.bussinessMobile}
+            register={register}
+            errors={errors}
             type={"number"}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="personalModile"
             label="Personal Mobile"
-            value={peopleFormData.personalModile}
+            register={register}
+            errors={errors}
             type={"number"}
           />
         </Section>
         <Section title="Emergencyṣ Contact">
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="nameEmergencysContact"
             label="Name"
-            value={peopleFormData.nameEmergencysContact}
+            register={register}
+            errors={errors}
             required
           />
           <DropdownInput
-            onChange={handleInputChange}
             name="relationsEmergencysContact"
             label={"Relations"}
-            value={peopleFormData.relationsEmergencysContact}
+            register={register}
+            errors={errors}
             options={relations}
             required
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="phoneNumberEmergencysContact"
             label="Phone Number"
-            value={peopleFormData.phoneNumberEmergencysContact}
+            register={register}
+            errors={errors}
             type={"number"}
             required
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="emailAddressEmergencysContact"
             label="Email Address"
-            value={peopleFormData.emailAddressEmergencysContact}
+            register={register}
+            errors={errors}
           />
         </Section>
         <Section title="Address Information">
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="homeAddress"
             label="Home Address"
-            value={peopleFormData.homeAddress}
+            register={register}
+            errors={errors}
             required
           />
           <FileInput
-            onChange={handleInputChange}
             name="attachment1AddressInfo"
             label={"Attachment"}
-            value={peopleFormData.attachment1AddressInfo}
+            register={register}
+            errors={errors}
             accept="image/*"
             required
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="mailPortalAddress"
             label="Mailing portal Address"
-            value={peopleFormData.mailPortalAddress}
+            register={register}
+            errors={errors}
             required
           />
           <FileInput
-            onChange={handleInputChange}
             name="attachment2AddressInfo"
             label="Attachment"
-            value={peopleFormData.attachment2AddressInfo}
+            register={register}
+            errors={errors}
             accept="image/*"
             required
           />
         </Section>
         <Section title="Dependents Information">
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="firstNameDependentsInfo"
-            value={peopleFormData.firstNameDependentsInfo}
+            register={register}
+            errors={errors}
             label="First Name"
             required
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="middleNameDependentsInfo"
-            value={peopleFormData.middleNameDependentsInfo}
+            register={register}
+            errors={errors}
             label="Middle Name"
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="lastNameDependentsInfo"
-            value={peopleFormData.lastNameDependentsInfo}
+            register={register}
+            errors={errors}
             label="Last Name"
             required
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="relationship"
-            value={peopleFormData.relationship}
+            register={register}
+            errors={errors}
             label="Relationship"
             required
           />
           <FloatingLabelDateInput
-            onChange={handleInputChange}
             name="dobDependentsInfo"
             label="Date of birth"
-            value={peopleFormData.dobDependentsInfo}
+            register={register}
+            errors={errors}
             required
           />
           <FileInput
-            onChange={handleInputChange}
             name="attachmentDependentsInfo"
-            value={peopleFormData.attachmentDependentsInfo}
+            register={register}
+            errors={errors}
             label="Attachment"
             accept="image/*"
           />
         </Section>
         <Section title="Bank Accounts Information">
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="jobCountryBAI"
             label="Job Country/Region"
-            value={peopleFormData.jobCountryBAI}
+            register={register}
+            errors={errors}
             required
           />
-          <FloatingLabelInput
-            onChange={handleInputChange}
+          <DropdownInput
             name="paymentMethod"
             label="Payment Method"
-            value={peopleFormData.paymentMethod}
+            register={register}
+            options={paymentMethod}
+            errors={errors}
             required
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="bankCountryRegion"
             label="Bank Country Region"
-            value={peopleFormData.bankCountryRegion}
+            register={register}
+            errors={errors}
             required
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="bankAccountName"
             label="Bank Account Name"
-            value={peopleFormData.bankAccountName}
+            register={register}
+            errors={errors}
             required
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="bankAccountNumber"
             label="Bank Account Number"
-            value={peopleFormData.bankAccountNumber}
+            register={register}
+            errors={errors}
             required
           />
-          <FloatingLabelInput
-            onChange={handleInputChange}
+          <DropdownInput
             name="currency"
             label="Currency"
-            value={peopleFormData.currency}
+            register={register}
+            errors={errors}
+            options={currency}
             required
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="IFSCCode"
             label="IFSC Code"
-            value={peopleFormData.IFSCCode}
+            register={register}
+            errors={errors}
             required
           />
           <FileInput
-            onChange={handleInputChange}
             name="attachmentBAI"
             label="Attachment"
-            value={peopleFormData.attachmentBAI}
+            register={register}
+            errors={errors}
             accept="image/*"
             required
           />
         </Section>
         <Section title="Nominations India">
           <DropdownInput
-            onChange={handleInputChange}
             name="countryNominationsIndia"
             options={countries}
             label="Country"
-            value={peopleFormData.countryNominationsIndia}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="beneficiaryName"
             label="Beneficiary Name"
-            value={peopleFormData.beneficiaryName}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="beneficiaryRelationship"
             label="Beneficiary Relationship"
-            value={peopleFormData.beneficiaryRelationship}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelDateInput
-            onChange={handleInputChange}
             name="beneficiaryDOB"
             label="Beneficiary Date of Birth"
-            value={peopleFormData.beneficiaryDOB}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="beneficiaryFullAddress"
             label="Benificiary Full Address"
-            value={peopleFormData.beneficiaryFullAddress}
+            register={register}
+            errors={errors}
           />
         </Section>
         <Section title="Manager Information">
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="supervisorName"
             label="Supervisor Name"
-            value={peopleFormData.supervisorName}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="empId1"
             label="Emp id"
-            value={peopleFormData.empId1}
-            type={"number"}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="performanceReviewerName"
             label="Performance Reviewer Name"
-            value={peopleFormData.performanceReviewerName}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="empId2"
             label="Emp id"
-            value={peopleFormData.empId2}
-            type={"number"}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="hrName"
             label="HR Name"
-            value={peopleFormData.hrName}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="empId3"
             label="Emp id"
-            value={peopleFormData.empId3}
-            type={"number"}
+            register={register}
+            errors={errors}
           />
         </Section>
         <Section title="Job Information">
-          <FloatingLabelInput
-            onChange={handleInputChange}
+          <DropdownInput
             name="employeeStatus"
             label="Employee Status"
-            value={peopleFormData.employeeStatus}
+            register={register}
+            errors={errors}
+            options={employeeStatus}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="officeLocation"
-            value={peopleFormData.officeLocation}
+            register={register}
+            errors={errors}
             label="Office Location"
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="defaultWeeklyHours"
             label="Default Weekly Hours"
-            value={peopleFormData.defaultWeeklyHours}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="timeZone"
             label="Time Zone"
-            value={peopleFormData.timeZone}
+            register={register}
+            errors={errors}
           />
           <FileInput
-            onChange={handleInputChange}
             name="attachmentJobInfo"
             label="Attachment"
             accept={"image/*"}
-            value={peopleFormData.attachmentJobInfo}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="countryJobInfo"
             label="Country/Region"
-            value={peopleFormData.countryJobInfo}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelDateInput
-            onChange={handleInputChange}
             name="contractEndDate"
             label="Contaract End Date"
-            value={peopleFormData.contractEndDate}
+            register={register}
+            errors={errors}
+          />
+          <DropdownInput
+            name="employeeType"
+            label="Employee Type"
+            register={register}
+            errors={errors}
+            options={employementType}
+            required
           />
         </Section>
         <Section title="Employment Information">
           <FloatingLabelDateInput
-            onChange={handleInputChange}
             name="mostRecentHireDate"
             label="Most Recent Hire Date"
-            value={peopleFormData.mostRecentHireDate}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelDateInput
-            onChange={handleInputChange}
             name="priorServiceDate"
             label="Prior Service Date"
-            value={peopleFormData.priorServiceDate}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelDateInput
-            onChange={handleInputChange}
             name="joiningDate"
             label="Company Start Date FS Joining Date"
-            value={peopleFormData.joiningDate}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelDateInput
-            onChange={handleInputChange}
             name="seniorityStartDate"
             label="Seniority Start Date"
-            value={peopleFormData.seniorityStartDate}
+            register={register}
+            errors={errors}
           />
         </Section>
         <Section title="Compensation Information">
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="payGroup"
             label="Pay Group"
-            value={peopleFormData.payGroup}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="npsOpted"
             label="NPS Opted"
-            value={peopleFormData.npsOpted}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="LocalID"
             label="Local ID"
-            value={peopleFormData.LocalID}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="npsNumber"
             label="NPS Number"
             type={"number"}
-            value={peopleFormData.npsNumber}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="empPentionSchemeStatus"
             label="Employee Pension Scheme Status"
-            value={peopleFormData.empPentionSchemeStatus}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="providentFundNumber"
             label="Provident Fund Number"
-            value={peopleFormData.providentFundNumber}
+            register={register}
+            errors={errors}
             type={"number"}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="pentionTrustID"
-            value={peopleFormData.pentionTrustID}
+            register={register}
+            errors={errors}
             label="Pention Trust ID"
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="providentFundTrustID"
             label="Provident Fund Trust ID"
-            value={peopleFormData.providentFundTrustID}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="pentionNumber"
             label="Pension Number"
-            value={peopleFormData.pentionNumber}
+            register={register}
+            errors={errors}
             type={"number"}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="uanNo"
             label="UAN No"
             type={"number"}
-            value={peopleFormData.uanNo}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="npsEligible"
             label="NPS Eligible"
-            value={peopleFormData.npsEligible}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="esicNo"
             label="ESIC No"
-            value={peopleFormData.esicNo}
+            register={register}
+            errors={errors}
             type={"number"}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="basicSalaryANN"
             label="Basic Salary ANN"
-            value={peopleFormData.basicSalaryANN}
+            register={register}
+            errors={errors}
           />
-          <FloatingLabelInput
-            onChange={handleInputChange}
+          <DropdownInput
             name="FrequencyCI"
             label="Frequency"
-            value={peopleFormData.FrequencyCI}
+            register={register}
+            errors={errors}
+            options={frequencies}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="commentsCI"
             label="Comments"
-            value={peopleFormData.commentsCI}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="numberCI"
             label="Number"
             type={"number"}
-            value={peopleFormData.numberCI}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelInput
-            onChange={handleInputChange}
             name="unitOfMeasure"
             label="Unit of Measure"
-            value={peopleFormData.unitOfMeasure}
+            register={register}
+            errors={errors}
           />
           <FloatingLabelDateInput
-            onChange={handleInputChange}
             name="effectiveStartDate"
             label="Effective Start Date"
-            value={peopleFormData.effectiveStartDate}
+            register={register}
+            errors={errors}
           />
         </Section>
         <div className="flex justify-end gap-4 px-4 sticky top -bottom-8 py-4 w-full sm:px-4 bg-white">
@@ -646,85 +664,98 @@ const Section = ({ title, children }) => {
     </div>
   );
 };
+
 const FloatingLabelInput = ({
   label,
   required,
   type,
-  onChange,
-  value,
   name,
+  register,
+  errors,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   return (
     <div className="relative">
       <input
-        type={type ? type : "text"}
-        required={required}
+        type={type || "text"}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        onChange={onChange}
-        value={value}
-        name={name}
-        className="peer w-full border border-gray-300 rounded-sm px-4 py-3 focus:outline-none focus:border-blue-500 text-gray-900"
+        {...register(name)}
+        className={`peer w-full border ${
+          errors[name] ? "border-red-500" : "border-gray-300"
+        } rounded-sm px-4 py-3 focus:outline-none focus:border-blue-500 text-gray-900`}
       />
       <label
-        className={`absolute left-4 text-gray-500 transition-all duration-300
-          ${isFocused || value ? "text-xs -top-2 bg-gray-100 px-1" : "top-3"}`}
+        className={`absolute left-4 text-gray-500 transition-all duration-300  ${
+          isFocused ? "text-xs -top-2 bg-gray-100 px-1" : "top-3"
+        }`}
       >
-        {label}
-        {required && " *"}
+        {label} {required && " *"}
       </label>
+      {errors[name] && (
+        <p className="text-red-500 text-xs">{errors[name].message}</p>
+      )}
     </div>
   );
 };
-const FloatingLabelDateInput = ({ label, name, required, onChange, value }) => {
+
+const FloatingLabelDateInput = ({
+  label,
+  name,
+  register,
+  errors,
+  required,
+}) => {
   return (
     <div className="relative">
       <input
         type="date"
-        name={name}
-        required={required}
-        onChange={onChange}
-        value={value}
-        className="peer w-full border border-gray-300 rounded-sm px-4 py-3 focus:outline-none focus:border-blue-500 text-gray-900"
+        {...register(name)}
+        className={`peer w-full border ${
+          errors[name] ? "border-red-500" : "border-gray-300"
+        } rounded-sm px-4 py-3 focus:outline-none focus:border-blue-500 text-gray-900`}
       />
-      <label
-        className={`absolute left-4 text-gray-500 text-xs transition-all -top-3 bg-gray-100 p-1 duration-300`}
-      >
-        {label}
-        {required && " *"}
+      <label className="absolute left-4 text-gray-500 text-xs transition-all -top-3 bg-gray-100 p-1">
+        {label} {required && " *"}
       </label>
+      {errors[name] && (
+        <p className="text-red-500 text-xs">{errors[name].message}</p>
+      )}
     </div>
   );
 };
-const FileInput = ({ label, required, name, value, onChange }) => {
+
+const FileInput = ({ label, name, register, errors, required }) => {
   return (
-    <div className="relative border border-gray-300 rounded-sm p-3">
+    <div className="relative border border-gray-300 rounded-sm p-2">
       <label className="text-gray-500 absolute bg-gray-100 -top-2 px-1 text-xs">
-        {label}
-        {required && " *"}
+        {label} {required && " *"}
       </label>
-      <input
-        name={name}
-        onChange={onChange}
-        type="file"
-        value={value}
-        className="w-full mt-2"
-      />
+      <input type="file" {...register(name)} className="w-full mt-2" />
+      {errors[name] && (
+        <p className="text-red-500 text-xs">{errors[name].message}</p>
+      )}
     </div>
   );
 };
-const DropdownInput = ({ label, options, name, required, value, onChange }) => {
+
+const DropdownInput = ({
+  label,
+  options,
+  name,
+  register,
+  errors,
+  required,
+}) => {
   return (
     <div className="relative">
       <select
-        name={name}
-        onChange={onChange}
-        required={required}
-        value={value}
-        className="w-full border border-gray-300 rounded-sm px-4 py-3 focus:outline-none focus:border-blue-500 text-gray-900"
+        {...register(name)}
+        className={`w-full border ${
+          errors[name] ? "border-red-500" : "border-gray-300"
+        } rounded-sm px-4 py-3 focus:outline-none focus:border-blue-500 text-gray-900`}
       >
-        <option value="" disabled selected>
+        <option disabled selected value="">
           Select {label}
         </option>
         {options.map((option, index) => (
@@ -733,12 +764,14 @@ const DropdownInput = ({ label, options, name, required, value, onChange }) => {
           </option>
         ))}
       </select>
-
-      <label className="absolute left-4 text-gray-500 text-xs bg-gray-100 transition-all px-1 duration-300 -top-2">
-        {label}
-        {required && " *"}
+      <label className="absolute left-4 text-gray-500 text-xs bg-gray-100 px-1 -top-2">
+        {label} {required && " *"}
       </label>
+      {errors[name] && (
+        <p className="text-red-500 text-xs">{errors[name].message}</p>
+      )}
     </div>
   );
 };
+
 export default PeopleManagementForm;

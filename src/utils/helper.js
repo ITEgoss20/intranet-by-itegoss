@@ -7,6 +7,7 @@ import {
   Package,
   Settings,
   LogOut,
+  Database,
 } from "lucide-react";
 
 export const menuItems = [
@@ -33,6 +34,7 @@ export const menuItems = [
   { name: "Visitor / Vendor / Customer", icon: Users, path: "/vvc-management" },
   { name: "Task Allocation", icon: ClipboardList, path: "/task-allocation" },
   { name: "MIS Dashboard", icon: LayoutDashboard, path: "/mis-dashboard" },
+  { name: "Master Data Managment", icon: Database, path: "/mdm-managment" },
   {
     name: "Logout",
     icon: LogOut,
@@ -41,11 +43,40 @@ export const menuItems = [
 ];
 
 export const peopleFormArray = {
-  maritalStatus: ["Single", "Married", "Divorced", "Widowed"],
-  genders: ["Male", "Female", "Other"],
   countries: ["India", "USA", "Canada", "UK", "Other"],
+  genders: ["Male", "Female", "Other", "Prefer not to say"],
+  maritalStatus: [
+    "Single",
+    "Married",
+    "Divorced",
+    "Widow",
+    "Prefer not to say",
+  ],
   titles: ["Mr.", "Mrs.", "Ms.", "Dr."],
-  relations: ["Father", "Mother", "Sister", "Friend"],
+  relations: ["Father", "Mother", "Sibling", "Friend", "Spouse"],
+  currency: ["INR", "USD", "EUR", "GBP", "AUD"],
+  employeeStatus: ["Active", "On Leave", "Terminated", "Resigned"],
+  bloodGroup: [
+    "A+",
+    "A-",
+    "B+",
+    "B-",
+    "AB+",
+    "AB-",
+    "O+",
+    "O-",
+    "BOM",
+    "Not Sure",
+  ],
+  frequencies: ["Monthly", "Biweekly", "Weekly", "Daily"],
+  paymentMethod: ["Bank Transfer", "Cheque", "Cash"],
+  employementType: [
+    "Full time",
+    "Part-Time",
+    "Consultant",
+    "Volunteer",
+    "Intern",
+  ],
 };
 
 export const peopleInitialStates = {

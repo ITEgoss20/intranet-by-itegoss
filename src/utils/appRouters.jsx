@@ -14,6 +14,7 @@ import AssetManagementPage from "../pages/AssetManagementPage";
 import VVCManagementPage from "../pages/VVCManagementPage";
 import TaskAllocationPage from "../pages/TaskAllocationPage";
 import MISDashboard from "../pages/MISDashboard";
+import MasterDataManagement from "../pages/MasterDataManagement";
 
 const appRouter = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/mis-dashboard",
         element: <ProtectedRoute element={<MISDashboard />} />,
+      },
+      {
+        path: "/mdm-managment",
+        element: <ProtectedRoute element={<MasterDataManagement />} />,
       },
     ],
   },
