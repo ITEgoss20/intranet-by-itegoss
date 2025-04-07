@@ -15,8 +15,13 @@ import VVCManagementPage from "../pages/VVCManagementPage";
 import TaskAllocationPage from "../pages/TaskAllocationPage";
 import MISDashboard from "../pages/MISDashboard";
 import MasterDataManagement from "../pages/MasterDataManagement";
+import HomePage from "../pages/HomePage";
 
 const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <ProtectedRoute element={<HomePage />} />,
+  },
   {
     path: "/login",
     element: <LoginPage />,
@@ -26,7 +31,7 @@ const appRouter = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/",
+        path: "/dashboard",
         element: <ProtectedRoute element={<Dashboard />} />,
       },
       {
