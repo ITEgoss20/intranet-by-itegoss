@@ -1,7 +1,9 @@
 import * as Yup from "yup";
 
 const employeeSchema = Yup.object().shape({
-  title: Yup.string().required("Title is required"),
+  title: Yup.string()
+    .oneOf(["Mr.", "Mrs.", "Ms.", "Dr."], "Invalid title selection")
+    .required("Title is required"),
   personalInfoFirstName: Yup.string().trim().required("First Name is required"),
   personalInfoMiddleName: Yup.string().trim(), // Optional
   personalInfoLastName: Yup.string().trim().required("Last Name is required"),

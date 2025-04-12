@@ -42,9 +42,9 @@ const HomePage = () => {
       </header>
       <div className="px-2 md:px-4">
         <TripleCarousel />
-        <div className="h-40 mt-6 md:h-60 md:mt-4">
+        {/* <div className="h-40 mt-6 md:h-60 md:mt-4">
           <Carousel images={imagesLeft} />
-        </div>
+        </div> */}
         <IntranetDashboard />
         <ArticalsSection />
         <UseFullLinks />
